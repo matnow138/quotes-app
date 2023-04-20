@@ -1,0 +1,18 @@
+version: '3.7'
+services:
+  quotes-backend:
+    container_name: quotes-backend
+    image: matnow138/quotes-backend:1.0.1
+    restart: always
+    environment:
+      - POSTGRES_USER=kodilla
+      - POSTGRES_PASSWORD=kodilla
+    ports:
+        - '8080:8080'
+    networks:
+     - quotes-net
+
+networks:
+  quotes-net:
+    external:
+      name: 'quotes-net'

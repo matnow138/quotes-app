@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  quotes-database:
+    container_name: kodilla-quotes
+    image: postgres:10.5
+    restart: always
+    environment:
+      - POSTGRES_USER=kodilla
+      - POSTGRES_PASSWORD=kodilla
+      - POSTGRES_DB=kodilla-quotes
+    ports:
+        - '5432:5432'
+    volumes:
+        - ./dump.sql:/docker-entrypoint-initdb.d/create_tables.sql
+    networks:
+      - quotes-net
+
+networks:
+  quotes-net:
+    external:
+      name: 'quotes-net'
